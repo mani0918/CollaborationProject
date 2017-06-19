@@ -1,0 +1,9 @@
+127.0.0.1 - - [08/Jun/2017:15:34:13 +0530] "GET / HTTP/1.1" 404 1081
+0:0:0:0:0:0:0:1 - - [08/Jun/2017:15:34:14 +0530] "GET /CollaborationFrontEnd/ HTTP/1.1" 200 1625
+0:0:0:0:0:0:0:1 - - [08/Jun/2017:15:34:14 +0530] "GET /CollaborationFrontEnd/MainApp.js HTTP/1.1" 200 48
+0:0:0:0:0:0:0:1 - - [08/Jun/2017:15:34:14 +0530] "GET /CollaborationFrontEnd/RouteConfig.js HTTP/1.1" 200 170
+0:0:0:0:0:0:0:1 - - [08/Jun/2017:15:34:15 +0530] "GET /CollaborationFrontEnd/Template/Home.html HTTP/1.1" 200 20
+0:0:0:0:0:0:0:1 - - [08/Jun/2017:15:34:44 +0530] "GET /CollaborationFrontEnd/Template/Login.html HTTP/1.1" 200 115
+0:0:0:0:0:0:0:1 - - [08/Jun/2017:15:35:17 +0530] "GET /CollaborationFrontEnd/ HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [08/Jun/2017:15:35:17 +0530] "GET /CollaborationFrontEnd/RouteConfig.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [08/Jun/2017:15:35:17 +0530] "GET /CollaborationFrontEnd/Template/Home.html HTTP/1.1" 304 -
