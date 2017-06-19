@@ -1,4 +1,0 @@
-myApp.config(function($routeProvider) {
-	$routeProvider.when("/", {templateUrl : "index.html"})
-				  s.when("#/Login", {templateUrl : "Template/Login.html"})
-});
