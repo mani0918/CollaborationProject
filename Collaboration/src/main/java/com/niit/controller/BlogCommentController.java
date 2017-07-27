@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.dao.BlogCommentDao;
+import com.niit.dao.BlogDao;
 import com.niit.domain.Blog;
 import com.niit.domain.BlogComment;
 
@@ -24,6 +25,8 @@ public class BlogCommentController {
 
 	@Autowired
 	BlogComment blogComment;
+	@Autowired
+	BlogDao blogDao;
 
 	@RequestMapping(value = "/getBlogComments", method = RequestMethod.GET)
 	public ResponseEntity<List<BlogComment>> list() {
@@ -38,10 +41,10 @@ public class BlogCommentController {
 	public ResponseEntity<String> addBlogComment(@RequestBody BlogComment blogComment) {
 
 		blogComment.setBlogCommentDate(new Date());
-		blogComment.setBlogId(102);
-		blogComment.setUserId(102);
+		blogComment.setBlogId(1);
+		blogComment.setUserId("102");
 		blogComment.setUsername("mani");
-		blogCommentDao.insertBlogComment(blogComment);
+		blogCommentDao.save(blogComment);
 		return new ResponseEntity<String>("Successfully inserted", HttpStatus.OK);
 
 	}
@@ -50,7 +53,7 @@ public class BlogCommentController {
 
 	@RequestMapping(value = "/deleteBlogComment/{blogCommentId}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteBlogComment(@PathVariable("blogCommentId") int blogCommentId) {
-		blogCommentDao.deleteBlogComment(blogCommentId);
+		blogCommentDao.delete(blogCommentId);
 		return new ResponseEntity<String>("deleted Successfully", HttpStatus.OK);
 
 	}
@@ -58,11 +61,20 @@ public class BlogCommentController {
 	// update blogComment
 
 	@RequestMapping(value = "/updateBlog/{blogCommentId}", method = RequestMethod.PUT)
-	public ResponseEntity<BlogComment> updateBlog(@PathVariable("blogCommentId") int blogCommentId, @RequestBody BlogComment blogComment) {
+	public ResponseEntity<BlogComment> updateBlog(@PathVariable("blogCommentId") int blogCommentId,
+			@RequestBody BlogComment blogComment) {
 		BlogComment curr_blogcomment = blogCommentDao.getBlogCommentById(blogCommentId);
 		curr_blogcomment.setBlogComment(blogComment.getBlogComment());
-		blogCommentDao.insertBlogComment(curr_blogcomment);
+		blogCommentDao.update(curr_blogcomment);
 		return new ResponseEntity<BlogComment>(curr_blogcomment, HttpStatus.OK);
 
 	}
+	//getAllCommentsByBlogId
+
+	@RequestMapping(value = "/getAllCommentsByBlogId/{blogId}", method = RequestMethod.GET)
+	public ResponseEntity<List<BlogComment>> getAllCommentsByBlogId(@PathVariable("blogId") int blogId) {
+		return new ResponseEntity<List<BlogComment>>(blogCommentDao.getAllCommentsByBlogId(blogId), HttpStatus.OK);
+	}
+
+	// create , update , delete, getAllCommentsByBlogId
 }

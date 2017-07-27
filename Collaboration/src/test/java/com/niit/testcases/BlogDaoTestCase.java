@@ -39,7 +39,7 @@ public class BlogDaoTestCase {
 		blog.setBlogId(102);
 		blog.setBlogName("Notebook");
 		blog.setCreateDate(new Date());
-		boolean flag = blogDao.insertBlog(blog);
+		boolean flag = blogDao.save(blog);
 
 		assertEquals("createBlogTestCase", true, flag);
 	}

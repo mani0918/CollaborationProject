@@ -3,7 +3,10 @@ package com.niit.domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -11,9 +14,9 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table
-public class Job {
+public class Job extends BaseDomain{
 @Id
-private int jobId;
+private String jobId;
 private String jobProfile;
 private String jobDescription;
 
@@ -22,10 +25,10 @@ private String status;
 private Date postDate;
 
 
-public int getJobId() {
+public String getJobId() {
 	return jobId;
 }
-public void setJobId(int jobId) {
+public void setJobId(String jobId) {
 	this.jobId = jobId;
 }
 public String getJobProfile() {

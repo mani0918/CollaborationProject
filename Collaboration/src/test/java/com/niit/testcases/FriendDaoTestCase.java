@@ -37,11 +37,11 @@ public class FriendDaoTestCase {
 	@Test
 	public void createFriendTestCase() {
 	
-		friend.setFriendId(500);
-		friend.setUserId(100);
+		friend.setFriendId("500");
+		friend.setUserId("100");
 		friend.setStatus("N");
 		
-		boolean flag= friendDao.insertFriend(friend);
+		boolean flag= friendDao.save(friend);
 		assertEquals("createFriendTestCase", true, flag);
 	}
 

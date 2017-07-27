@@ -1,47 +1,39 @@
-   <div ng-controller="BlogController">
-
-	<form>
-		<table>
-			<tr>
-				<td colspan="2"></td>
-			</tr>
-			<tr>
-				<td>Blog Content</td>
-			</tr>
-			<tr>
-				<td>Blog Name</td>
-				<td><input type="text" ng-model="blog.blogName" /></td>
-			</tr>
-			<tr>
-				<td>Blog Content</td>
-				<td colspan="2"><input type="text" ng-model="blog.blogContent" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" ng-click="saveBlogPost()" /></td>
-			</tr>
-		</table>
-	</form>
-	
-
-	
-	<p align="center">Blogs</p>
-	<div class="container">            
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>BlogId</th>
-        <th>BlogName</th>
-        <th>BlogContent</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr  ng-repeat='x in blogdata'>
-        <td>{{x.blogId}}</td>
-        <td>{{x.blogName}}</td>
-        <td>{{x.blogContent}}</td>
-      </tr>
-     
-    </tbody>
-  </table>
+	<div ng-controller="BlogController as blogCtrl">
+<h2>PostABlog</h2>
+	<div class="container">
+<div class="card">
+  <div class="card-header">
+    Post A Blog
+  </div>
+  <div class="card-block">
+   BlogName: <input type="text" ng-model="blogCtrl.blog.blogName" /><br>
+   BlogContent: <input type="text" ng-model="blogCtrl.blog.blogContent" /><br>
+    <a class="btn btn-info" ng-click="blogCtrl.createBlog(blogCtrl.blog)">Create</a>
+  </div>
 </div>
+
+
+			
+	<h2 align="center">View Blogs</h2>
+
+	<hr class="style17">
+	<div ng-repeat="x in blogs | orderBy : 'blogId' | filter:{status:getBlogsByStatus()}">
+	<!-- <div class="card text-center"> -->
+		<div class="card">
+			<div class="card-header">BlogId:{{x.blogId}}</div>
+			<div class="card-block orange">
+				<h3 class="card-title">BlogName &nbsp:&nbsp&nbsp{{x.blogName}}</h4>
+				<h4 class="card-text">BlogContent &nbsp:&nbsp&nbsp{{x.blogContent}}</h4>
+				<p class="card-text">BlogStatus &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp{{x.status}}</p>
+						
+				
+			</div>
+		</div>
+		<!-- </div> -->
+	</div>
+	</div>
+	
+<!-- 	{{message}} -->
+</div>
+
 </div>

@@ -43,9 +43,9 @@ public class BlogCommentDaoTestCase {
 		blogComment.setBlogCommentId(10);
 		blogComment.setBlogComment("what is this?");
 		blogComment.setBlogCommentDate(new Date());
-		blogComment.setUserId(1);
+		blogComment.setUserId("1");
 		blogComment.setUsername("mani");
-		boolean flag = blogCommentDao.insertBlogComment(blogComment);
+		boolean flag = blogCommentDao.save(blogComment);
 		assertEquals("CraeteBlogCommentTestCase", true, flag);
 		
 	}

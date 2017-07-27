@@ -43,10 +43,10 @@ public class ForumDaoTestCase {
 		forum.setForumId(200);
 		forum.setForumName("Mani");
 		forum.setStatus("Approved");
-		forum.setUserId(100);
+		forum.setUserId("100");
 		forum.setCreateDate(new Date());
 		
-		boolean flag= forumDao.insertForum(forum);
+		boolean flag= forumDao.save(forum);
 		assertEquals("createForumTestCase", true, flag);
 	}
 

@@ -9,23 +9,25 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table
-public class Friend {
+public class Friend extends BaseDomain {
 
-	private int userId;
-	@Id
-	private int friendId;
-	private String status;
 	
-	public int getUserId() {
-		return userId;
+	@Id
+	private int tableId;
+	private String friendId;
+	private String status;
+	private String userId;
+	private String isOnline;
+	public int getTableId() {
+		return tableId;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setTableId(int tableId) {
+		this.tableId = tableId;
 	}
-	public int getFriendId() {
+	public String getFriendId() {
 		return friendId;
 	}
-	public void setFriendId(int friendId) {
+	public void setFriendId(String friendId) {
 		this.friendId = friendId;
 	}
 	public String getStatus() {
@@ -33,6 +35,18 @@ public class Friend {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getIsOnline() {
+		return isOnline;
+	}
+	public void setIsOnline(String isOnline) {
+		this.isOnline = isOnline;
 	}
 	
 	

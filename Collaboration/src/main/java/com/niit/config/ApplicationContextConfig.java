@@ -20,8 +20,8 @@ import com.niit.domain.Forum;
 import com.niit.domain.ForumComment;
 import com.niit.domain.Friend;
 import com.niit.domain.Job;
-
-import com.niit.domain.UserTable;
+import com.niit.domain.JobApplied;
+import com.niit.domain.User;
 
 @Configuration
 @ComponentScan("com.niit")
@@ -65,7 +65,9 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClass(ForumComment.class);
 		sessionBuilder.addAnnotatedClass(Friend.class);
 		sessionBuilder.addAnnotatedClass(Job.class);
-		sessionBuilder.addAnnotatedClass(UserTable.class);
+		sessionBuilder.addAnnotatedClass(JobApplied.class);
+		sessionBuilder.addAnnotatedClass(User.class);
+	
 		return sessionBuilder.buildSessionFactory();
 	}
 

@@ -4,15 +4,20 @@ import java.util.List;
 
 import com.niit.domain.ForumComment;
 
-
 public interface ForumCommentDao {
 
-public boolean insertForumComment(ForumComment forumComment);
-	
-	public List<ForumComment> list();
-	
-	public boolean deleteForumComment(int id);
-	
+	public boolean save(ForumComment forumComment);
+
+	public boolean update(ForumComment forumComment);
+
+	public boolean delete(int id);
+
 	public ForumComment getForumCommentById(int id);
-	
+
+	public List<ForumComment> list();
+
+	public List<ForumComment> getAllCommentsByForumId(int forumId);
+
+	public int getMaxForumCommentId();
+
 }

@@ -1,0 +1,66 @@
+<div ng-controller="UserController as userCtrl">
+
+	<form ng-submit=userCtrl.createUser(userCtrl.user)>
+
+		<h2 align="center">Register</h2>
+		<div class="container">
+			<form action="Register" class="form-horizontal">
+				<label>Register As:</label>
+				<div class="radio">
+					<label class="radio-inline"> <input type="radio" value="ROLE_USER" ng-model="userCtrl.user.role" class="form-control" name="userId" id="userId">Student:
+					</label> 
+					<label class="radio-inline"> <input type="radio" value="ROLE_EMP" ng-model="userCtrl.user.role" class="form-control" name="userId" id="userId">Employee:
+					</label>
+
+				</div><br>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="userId">UserId:</label>
+					<div class="col-sm-6">
+						<input type="text" ng-model="userCtrl.user.userId" class="form-control" name="userId" id="userId">
+
+					</div>
+				</div>
+				<br>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="firstname">FirstName:</label>
+					<div class="col-sm-6">
+
+						<input type="text" ng-model="userCtrl.user.firstname" class="form-control" name="userId" id="firstname">
+					</div>
+				</div>
+				<br>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="lastname">LastName:</label>
+					<div class="col-sm-6">
+						<input type="text" ng-model="userCtrl.user.lastname" class="form-control" name="userName" id="lastname">
+
+					</div>
+				</div>
+
+
+<br>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="emailId">EmailId:</label>
+					<div class="col-sm-6">
+						<input type="email" ng-model="userCtrl.user.emailId" class="form-control" name="emailId" id="emailId" required>
+
+					</div>
+				</div>
+				<br>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="pwd">Password:</label>
+					<div class="col-sm-6">
+						<input type="password" ng-model="userCtrl.user.password" class="form-control" name="pwd" id="pwd">
+
+					</div>
+				</div>
+				<br>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</form>
+</div>

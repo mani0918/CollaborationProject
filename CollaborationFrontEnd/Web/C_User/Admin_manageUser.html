@@ -1,0 +1,38 @@
+<div ng-controller="UserController as userCtrl">
+<div class="container">
+<h2 align="center">Users</h2>
+<hr class="style17">
+<table class="table table-inverse">
+  <thead>
+    <tr>
+    <th>UserID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>EmailId</th>
+      <th>password</th>
+      <th>Role</th>
+      <th>Remarks</th>
+      <th>Status</th>
+      <th>ChangeStatus</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="u in users | orderBy:'userId' | filter:{status: userCtrl.getUsersByStatus()}">  
+      <td>{{u.userId}}</td>
+      <td>{{u.firstname}}</td>
+      <td>{{u.lastname}}</td>
+      <td>{{u.emailId}}</td>
+      <td>{{u.password}}</td>
+      <td>{{u.role}}</td>
+      <td>{{u.remarks}}</td>
+      <td>{{u.status}}</td>
+      <td><a ng-click=userCtrl.acceptUser(u.userId)>
+          <span class="glyphicon glyphicon-ok"></span>
+        </a>&nbsp&nbsp<a ng-click="userCtrl.rejectUser(u.userId)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>

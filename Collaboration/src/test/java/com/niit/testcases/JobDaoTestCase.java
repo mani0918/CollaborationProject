@@ -41,12 +41,15 @@ public class JobDaoTestCase {
 	
 	@Test
 	public void CreateJobTestCase() {
-		job.setJobId(600);
+		job.setJobId("600");
 		job.setJobProfile("Software Engineer");
 		job.setJobDescription("As a Java Developer");
 		job.setPostDate(new Date());
 		job.setQualification("BTech with 65% Aggregate");
 		job.setStatus("Apply");
+		
+		boolean flag=jobDao.save(job);
+		assertEquals("CreateJobtestCase", true, flag);
 	}
 
 }

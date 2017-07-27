@@ -3,7 +3,10 @@ package com.niit.domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -11,13 +14,15 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table
-public class BlogComment {
+public class BlogComment extends BaseDomain {
 	@Id
+	@SequenceGenerator(name="SEQ_GEN", sequenceName="BLOGCOMMENT_MODEL", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SEQ_GEN")
 	private int blogCommentId;
 	private int blogId;
 	private String blogComment;
 	private Date blogCommentDate;
-	private int userId;
+	private String userId;
 	private String username;
 
 	public int getBlogCommentId() {
@@ -52,11 +57,11 @@ public class BlogComment {
 		this.blogCommentDate = blogCommentDate;
 	}
 
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

@@ -1,0 +1,47 @@
+  <div ng-controller="ForumController">
+
+	<form>
+		<table>
+			<tr>
+				<td colspan="2"></td>
+			</tr>
+			<tr>
+				<td>Forum Content</td>
+			</tr>
+			<tr>
+				<td>Forum Name</td>
+				<td><input type="text" ng-model="forum.forumName" /></td>
+			</tr>
+			<tr>
+				<td>Forum Content</td>
+				<td colspan="2"><input type="text" ng-model="forum.forumContent" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" ng-click="saveForumPost()" /></td>
+			</tr>
+		</table>
+	</form>
+	
+
+	
+	<p align="center">Forums</p>
+	<div class="container">            
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ForumId</th>
+        <th>ForumName</th>
+        <th>ForumContent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  ng-repeat='x in forumdata'>
+        <td>{{x.forumId}}</td>
+        <td>{{x.forumName}}</td>
+        <td>{{x.forumContent}}</td>
+      </tr>
+     
+    </tbody>
+  </table>
+</div>
+</div>

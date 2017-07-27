@@ -6,13 +6,18 @@ import com.niit.domain.Blog;
 
 public interface BlogDao {
 
-	public boolean insertBlog(Blog blog);
-	
+	public boolean save(Blog blog);
+
+	public boolean update(Blog blog);
+
+	public boolean delete(int id);
+
+	public Blog getBlogById(int blogId);
+
 	public List<Blog> list();
-	
-	public boolean deleteBlog(int id);
-	
-	public Blog getBlogById(int id);
-	
-	
+
+	public List<Blog> list(String status);
+
+	public int getMaxBlogId();
+
 }

@@ -1,0 +1,24 @@
+<div ng-controller="ForumController as forumCtrl">
+	<h2 align="center">Forums</h2>
+	<div class="container">
+	<hr class="style17">
+	<div ng-repeat="y in forums | orderBy : 'forumId' | filter:{status:forumCtrl.getForumsByStatus()}">
+	
+	<!-- <div class="card text-center"> -->
+		<div class="card">
+			<div class="card-header">ForumId:{{y.forumId}}</div>
+			<div class="card-block">
+				<h3 class="card-title">ForumName &nbsp:&nbsp&nbsp{{y.forumName}}</h4>
+				<h4 class="card-text">ForumContent &nbsp:&nbsp&nbsp{{y.forumContent}}</h4>
+				<p class="card-text">ForumStatus &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp{{y.remarks}}</p>
+				
+				<!-- <a href="#" class="btn btn-primary">Accept</a> -->
+				<button type="button" class="btn btn-success" ng-hide="y.status=='A'" ng-click=forumCtrl.acceptForum(y.forumId)>Approve</button>
+				<button type="button" class="btn btn-danger" ng-hide="y.status=='R'" ng-click=forumCtrl.rejectForum(y.forumId)>Reject</button>
+			</div>
+		</div>
+		<!-- </div> -->
+	</div>
+	</div>
+	<!-- {{message}} -->
+</div>

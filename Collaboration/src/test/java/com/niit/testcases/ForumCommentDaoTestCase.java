@@ -42,10 +42,10 @@ public class ForumCommentDaoTestCase {
 		forumComment.setForumComment("nice");
 		forumComment.setForumCommentDate(new Date());
 		forumComment.setForumId(200);
-		forumComment.setUserId(100);
+		forumComment.setUserId("100");
 		forumComment.setUsername("mani");
 		
-		boolean flag =forumCommentDao.insertForumComment(forumComment);
+		boolean flag =forumCommentDao.save(forumComment);
 		assertEquals("createForumCommentTestCase", true, flag);
 	}
 

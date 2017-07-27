@@ -1,0 +1,42 @@
+<div ng-controller="JobController as jobCtrl">
+<form ng-submit = jobCtrl.createJob(jobCtrl.job)>
+<h2 align="center">Post A Job</h2>
+<div class="container">
+<hr class="style17">
+	<div class="card">
+		<form>
+  		
+		<div class="form-group row">
+  			<label for="example-text-input" class="col-sm-2 col-form-label">JobId:</label>
+  			<div class="col-sm-6">
+    			<input class="form-control" ng-model="jobCtrl.job.jobId" type="text" value="Artisanal kale" id="example-text-input">
+  			</div>
+		</div>
+		<div class="form-group row">
+  			<label for="example-text-input" class="col-sm-2 col-form-label">JobTitle:</label>
+  			<div class="col-sm-6">
+    			<input class="form-control" ng-model="jobCtrl.job.jobProfile" type="text" value="Artisanal kale" id="example-text-input">
+  			</div>
+		</div>
+		<div class="form-group row">
+  			<label for="example-text-input" class="col-sm-2 col-form-label">JobDescription:</label>
+  			<div class="col-sm-6">
+    			<input class="form-control" ng-model="jobCtrl.job.jobDescription" type="text" value="Artisanal kale" id="example-text-input">
+  			</div>
+		</div>
+		<div class="form-group row">
+  			<label for="example-text-input" class="col-sm-2 col-form-label">JobQualification:</label>
+  			<div class="col-sm-6">
+    			<input class="form-control" ng-model="jobCtrl.job.qualification" type="text" value="Artisanal kale" id="example-text-input">
+  			</div>
+		</div>
+ 		
+ 	 </div>
+  			<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+		</form>
+</div>
+</div>
+</form>
+</div>
