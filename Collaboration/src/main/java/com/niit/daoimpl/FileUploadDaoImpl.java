@@ -1,14 +1,19 @@
 package com.niit.daoimpl;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.niit.dao.FileUploadDao;
 import com.niit.domain.FileUpload;
 
+@Repository("fileUploadDao")
+@Transactional
 public class FileUploadDaoImpl implements FileUploadDao {
 
 	

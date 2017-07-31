@@ -42,7 +42,8 @@ private static Logger log = LoggerFactory.getLogger(FileUploadController.class);
 			System.out.println(getFileUpload.getFiledata());
 			byte[] imageFile = getFileUpload.getFiledata();
 			try {
-				String path = "/Users/Suveen/Documents/java/workspace/SLT/CollaborationProject/CollaborationProjectFrontEnd/web/resources/ProfilePics/"+loggedInUserId;
+				String path = "E:/CollaborationProject/CollaborationFrontEnd/Web/Resources/ProfilePics/"+loggedInUserId;
+				System.out.println(path);
 				File file = new File(path);
 				FileOutputStream fos = new FileOutputStream(file);
          		fos.write(imageFile); // write the array of bytes in username file.

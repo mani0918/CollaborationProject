@@ -1,0 +1,35 @@
+<div class="container">
+	<h2 align="center">ViewForum</h2>
+	<hr class="style17">
+	<div class="card orange">
+		<div class="card-header">ForumID:{{gForum.forumId}}</div>
+		<div class="card-block">
+			<h3 class="card-title">ForumName:{{gForum.forumName}}</h3>
+			<h4 class="card-text">ForumContent:{{gForum.forumContent}}</h4>
+		</div>
+	</div>
+	<h3>Comments:</h3>
+	<div ng-repeat="cmnt in forumComments | orderBy : 'forumCommentId'">
+		<div class="card">
+			<div class="card-block">
+				<h4>{{cmnt.userId}}:{{cmnt.forumComment}}</h4>
+				commented on:{{cmnt.forumCommentDate | date:'medium'}}
+			</div>
+		</div>
+
+	</div>
+  <div ng-controller="ForumController as forumCtrl">
+	<h4>AddComment:</h4>
+		<form ng-submit="forumCtrl.addComment(gForum.forumId)">
+			<div class="form-group">
+				<label for="comment"></label>
+				<textarea class="form-control" rows="5" id="comment" ng-model="forumComment.forumComment"></textarea>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<p align="right"><button type="submit" class="btn btn-primary">comment</button></p>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

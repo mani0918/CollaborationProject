@@ -16,6 +16,11 @@ myApp.config(function($routeProvider) {
 		controller : "UserController"
 	})
 
+	.when("/Profile", {
+		templateUrl : "C_User/Profile.html",
+		controller : "UserController"
+	})
+
 	.when("/getAllUsers", {
 		templateUrl : "C_User/Admin_manageUser.html",
 		controller : "UserController"
@@ -58,8 +63,17 @@ myApp.config(function($routeProvider) {
 		templateUrl : "C_Blog/Admin_manageBlog.html",
 		controller : "BlogController"
 	})
+	.when("/viewBlog", {
+		templateUrl : "C_Blog/viewBlog.html",
+		controller : "BlogController"
+	})
+	
 	.when("/Forum", {
-		templateUrl : "Web/C_Forum/Forum.html",
+		templateUrl : "C_Forum/Forum.html",
+		controller : "ForumController"
+	})
+	.when("/viewForum", {
+		templateUrl : "C_Forum/viewForum.html",
 		controller : "ForumController"
 	})
 	.when("/getAllForums", {
@@ -83,12 +97,46 @@ myApp.config(function($routeProvider) {
 		templateUrl : "C_Job/Admin_postAJob.html",
 		controller : "JobController"
 	})
-	
-	.when("/getAllJobs",{
+	.when("/Chat",{
+		templateUrl : "C_Chat/Chat.html",
+		controller : "ChatController"
+	})
+	.when("/Job",{
+		templateUrl : "C_Job/Job.html",
+		controller : "JobController"
+	})
+	.when("/getVacantJobs",{
 		templateUrl : "C_Job/Admin_manageJob.html",
 		controller : "JobController"
 	})
-	
+	.when("/getClosedJobs",{
+		templateUrl : "C_Job/Admin_manageJob.html",
+		controller : "JobController"
+	})
+	.when("/getAppliedJobs",{
+		templateUrl : "C_Job/Admin_manageAppliedJobs.html",
+		controller : "JobController"
+	})
+	.when("/JobsApplied",{
+		templateUrl : "C_Job/JobApplied.html",
+		controller : "JobController"
+	})
+	.when("/requestsSent",{
+		templateUrl : "C_Friend/RequestsSent.html",
+		controller : "FriendController"
+	})
+	.when("/myFriends",{
+		templateUrl : "C_Friend/MyFriends.html",
+		controller : "FriendController"
+	})
+	.when("/allUsers",{
+		templateUrl : "C_Friend/AllUsers.html",
+		controller : "FriendController"
+	})
+	.when("/receivedFriendRequests",{
+		templateUrl : "C_Friend/NewFriendsRequests.html",
+		controller : "FriendController"
+	})
 	.otherwise({redirectTo:'/'})
 
 

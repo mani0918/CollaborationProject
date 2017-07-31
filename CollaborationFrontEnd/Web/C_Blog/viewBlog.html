@@ -1,0 +1,37 @@
+
+<div class="container">
+	<h2 align="center">ViewBlog</h2>
+	<hr class="style17">
+	<div class="card orange">
+		<div class="card-header">BlogID:{{gBlog.blogId}}</div>
+		<div class="card-block">
+			<h3 class="card-title">BlogName:{{gBlog.blogName}}</h3>
+			<h4 class="card-text">BlogContent:{{gBlog.blogContent}}</h4>
+		</div>
+	</div>
+	<h3>Comments:</h3>
+	<div ng-repeat="cmnt in blogComments | orderBy : 'blogCommentId'">
+		<div class="card">
+			<div class="card-block">
+				<h4>{{cmnt.userId}}:{{cmnt.blogComment}}</h4>
+				commented on:{{cmnt.blogCommentDate | date:'medium'}}
+			</div>
+		</div>
+
+	</div>
+<div ng-controller="BlogController as blogCtrl">
+	<h4>AddComment:</h4>
+		<form ng-submit="blogCtrl.addComment(gBlog.blogId)">
+			<div class="form-group">
+				<label for="comment"></label>
+				<textarea class="form-control" rows="5" id="comment" ng-model="blogComment.blogComment"></textarea>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<p align="right"><button type="submit" class="btn btn-primary">comment</button></p>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+

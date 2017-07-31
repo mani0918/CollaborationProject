@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.dao.ForumDao;
 import com.niit.dao.UserDao;
+import com.niit.domain.Blog;
 import com.niit.domain.Forum;
 import com.niit.domain.User;
 
@@ -44,9 +45,27 @@ public class ForumController {
 	}
 
 
+	@RequestMapping(value = "/getForum/{forumId}", method = RequestMethod.GET)
+	public ResponseEntity<Forum> getForum(@PathVariable("forumId") int forumId) {
+		logger.debug("calling method getUser");
+		Forum forum = forumDao.getForumById(forumId);
+		if (forum == null) {
+			logger.debug("User does not exist wiht userId" + forumId);
+			forum = new Forum(); // To avoid NLP - NullPointerException
+			forum.setErrorCode("404");
+			forum.setErrorMessage("blog does not exist");
+			return new ResponseEntity<Forum>(forum, HttpStatus.OK);
+		} else {
+			logger.debug("**forum exist with id" + forumId);
+			return new ResponseEntity<Forum>(forum, HttpStatus.OK);
+		}
+
+	}
+	
+	
 	// insert the forum
 	@RequestMapping(value = "/insertForum", method = RequestMethod.POST)
-	public ResponseEntity<String> addForum(@RequestBody Forum forum) {
+	public ResponseEntity<Forum> addForum(@RequestBody Forum forum) {
 		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 		if (loggedInUserId != null) {
 			forum.setCreateDate(new Date());
@@ -67,7 +86,7 @@ public class ForumController {
 			forum.setErrorCode("404");
 			forum.setErrorMessage("Please login to create forum");
 		}
-		return new ResponseEntity<String>("Successfully inserted", HttpStatus.OK);
+		return new ResponseEntity<Forum>(forum, HttpStatus.OK);
 
 	}
 

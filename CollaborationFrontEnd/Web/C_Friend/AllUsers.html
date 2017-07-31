@@ -1,0 +1,24 @@
+<div ng-controller="FriendController as frndCtrl">
+	<h2 align="center">Users</h2>
+	<div class="container">
+	<hr class="style17">
+	<div ng-repeat="user in users | orderBy : 'userId' | filter:{status:'A'}">
+	<!-- <div class="card text-center"> -->
+		<div class="card">
+			<div class="card-header">UserId:{{user.userId}}`</a></div>
+			<div class="card-block orange">
+				<h3 class="card-title">Name &nbsp:&nbsp&nbsp{{user.firstname}}{{user.lastname}}</h4>
+				<h4 class="card-text">Status&nbsp:&nbsp&nbsp{{user.remarks}}</h4>
+				
+				
+				
+				<!-- <a href="#" class="btn btn-primary">Accept</a> -->
+				<button type="button" class="btn btn-info" ng-click="frndCtrl.addFriend(user.userId)">AddFriend</button>
+			</div>
+		</div>
+	</div>
+
+	</div>
+	
+<!-- 	{{message}} -->
+</div>

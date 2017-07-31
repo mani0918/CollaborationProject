@@ -1,39 +1,54 @@
-	<div ng-controller="BlogController as blogCtrl">
-<h2>PostABlog</h2>
-	<div class="container">
-<div class="card">
-  <div class="card-header">
-    Post A Blog
-  </div>
-  <div class="card-block">
-   BlogName: <input type="text" ng-model="blogCtrl.blog.blogName" /><br>
-   BlogContent: <input type="text" ng-model="blogCtrl.blog.blogContent" /><br>
-    <a class="btn btn-info" ng-click="blogCtrl.createBlog(blogCtrl.blog)">Create</a>
-  </div>
-</div>
 
-
-			
-	<h2 align="center">View Blogs</h2>
-
-	<hr class="style17">
-	<div ng-repeat="x in blogs | orderBy : 'blogId' | filter:{status:getBlogsByStatus()}">
-	<!-- <div class="card text-center"> -->
-		<div class="card">
-			<div class="card-header">BlogId:{{x.blogId}}</div>
-			<div class="card-block orange">
-				<h3 class="card-title">BlogName &nbsp:&nbsp&nbsp{{x.blogName}}</h4>
-				<h4 class="card-text">BlogContent &nbsp:&nbsp&nbsp{{x.blogContent}}</h4>
-				<p class="card-text">BlogStatus &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp{{x.status}}</p>
-						
-				
-			</div>
+<div ng-controller="BlogController as blogCtrl">
+	<a class="btn btn-success" ng-click = "blogCtrl.userClickedPostABlog()">Post a Blog</a>
+	<div ng-if="blogCtrl.postNewBlog">
+		<h2 align="center">PostABlog</h2>
+		<div class="container">
+			<form ng-submit="blogCtrl.createBlog(blogCtrl.blog)">
+				<div class="card">
+					<div class="card-header">Post A Blog</div>
+					<div class="card-block black">
+						<div class="form-group">
+							<label for="usr"> BlogName:</label> <input type="text" class="form-control" id="usr" ng-model="blogCtrl.blog.blogName">
+						</div>
+						<div class="form-group">
+							<label for="comment">BlogComment:</label>
+							<textarea class="form-control" rows="5" id="comment" ng-model="blogCtrl.blog.blogContent"></textarea>
+						</div>
+						<p align="right"><button type="submit" class="btn btn-warning">Post</button></p>
+					<br>
+					</div>
+				</div>
+			</form>
 		</div>
-		<!-- </div> -->
-	</div>
 	</div>
 	
-<!-- 	{{message}} -->
+	<div class="container">
+		<h2 align="center">View Blogs</h2>
+
+		<hr class="style17">
+		<form>
+			<input type='text' ng-model="searchString">
+		</form>
+		<div ng-repeat="x in blogs | orderBy : 'blogId' | filter:searchString">
+			<div ng-if="x.status == 'A'">
+				<!-- <div class="card text-center"> -->
+				<div class="card">
+					<div class="card-header"><a href="#/viewBlog" ng-click="getBlog(x.blogId)">BlogId:{{x.blogId}}</a></div>
+					<div class="card-block orange">
+						<h3 class="card-title">
+							BlogName &nbsp:&nbsp&nbsp{{x.blogName}}
+							</h4>
+							<h4 class="card-text">BlogContent &nbsp:&nbsp&nbsp{{x.blogContent}}</h4>
+							<p class="card-text">BlogStatus &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp{{x.status}}</p>
+					</div>
+				</div>
+				<!-- </div> -->
+			</div>
+		</div>
+	</div>
+
+	<!-- 	{{message}} -->
 </div>
 
-</div>
+

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Table
 public class Forum extends BaseDomain {
 	@Id
-	@SequenceGenerator(name="SEQ_GEN", sequenceName="BLOG_MODEL", allocationSize=1)
+	@SequenceGenerator(name="SEQ_GEN", sequenceName="FORUM_MODEL", allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SEQ_GEN")
 	private int forumId;
 	private String forumName;

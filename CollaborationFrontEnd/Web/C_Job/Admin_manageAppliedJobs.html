@@ -1,0 +1,28 @@
+<div ng-controller="JobController as jobCtrl">
+	<h2 align="center">Jobs</h2>
+	<div class="container">
+	<hr class="style17">
+	<div ng-repeat="jobApplication in jobApplications | orderBy : 'jobAppliedId'">
+	
+	<!-- <div class="card text-center"> -->
+		<div class="card card card-inverse card-info">
+			<div class="card-header black">JobAppliedId:{{jobApplication.jobAppliedId}}</div>
+			<div class="card-block">
+			
+			<h3 class="card-title">UserID &nbsp:&nbsp&nbsp{{jobApplication.userId}}</h3>
+			<h3 class="card-title">JobID &nbsp:&nbsp&nbsp{{jobApplication.jobId}}</h3>
+				<h4 class="card-text">Status &nbsp:&nbsp&nbsp{{jobApplication.status}}</h4>
+				<h4 class="card-text">Remarks &nbsp:&nbsp&nbsp{{jobApplication.remarks}}</h4>
+				<p class="card-text">jobAppliedDate &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp{{jobApplication.dateApplied}}</p>
+				
+				<button type="button" class="btn btn-success">CallForInterview</button>
+				<button type="button" class="btn btn-warning">Approve</button>
+				<button type="button" class="btn btn-danger">Reject</button>
+				</div>
+			
+		</div>
+		<!-- </div> -->
+	</div>
+	</div>
+	<!-- {{message}} -->
+</div>

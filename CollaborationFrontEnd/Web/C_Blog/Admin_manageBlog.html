@@ -1,23 +1,15 @@
-  <div ng-controller="BlogController as blogCtrl">
+<div ng-controller="BlogController as blogCtrl">
 	<h2 align="center">Blogs</h2>
 	<div class="container">
 	<hr class="style17">
 	<div ng-repeat="x in blogs | orderBy : 'blogId' | filter:{status:blogCtrl.getBlogsByStatus()}">
 	<!-- <div class="card text-center"> -->
 		<div class="card">
-			<div class="card-header">BlogId:{{x.blogId}}</div>
+			<div class="card-header"><a href="#/viewBlog" ng-click="getBlog(x.blogId)">BlogId:{{x.blogId}}`</a></div>
 			<div class="card-block orange">
 				<h3 class="card-title">BlogName &nbsp:&nbsp&nbsp{{x.blogName}}</h4>
 				<h4 class="card-text">BlogContent &nbsp:&nbsp&nbsp{{x.blogContent}}</h4>
 				<p class="card-text">BlogStatus &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp{{x.remarks}}</p>
-						<!-- <button type="button" class="btn btn-info" ng-click="blogCtrl.getAllBlogComments(x.blogId)">ViewComments</button>
-						<div class="card-block">
-								<div ng-repeat="cmnt in blogComments | orderBy : 'blogCommentId'">
-								<div ng-hide="(blogCtrl.getAllBlogComments(x.blogId))==null || cmnt.blogId != x.blogId">
-					<h4 class="card-text">BlogComment &nbsp:&nbsp&nbsp{{cmnt.blogComment}}&nbsp&nbsp&nbsp&nbspCommentedDate: {{cmnt.blogCommentDate}}</h4>
-					</div></div>
-					</div>
-				 -->
 				
 				
 				<!-- <a href="#" class="btn btn-primary">Accept</a> -->
@@ -25,8 +17,8 @@
 				<button type="button" class="btn btn-danger" ng-hide="x.status=='R'" ng-click=blogCtrl.reject(x.blogId)>Reject</button>
 			</div>
 		</div>
-		<!-- </div> -->
 	</div>
+
 	</div>
 	
 <!-- 	{{message}} -->

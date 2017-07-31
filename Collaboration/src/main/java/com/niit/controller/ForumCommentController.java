@@ -3,6 +3,8 @@ package com.niit.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.dao.ForumCommentDao;
+import com.niit.domain.BlogComment;
 import com.niit.domain.ForumComment;
 
 @RestController
@@ -24,6 +27,8 @@ public class ForumCommentController {
 	@Autowired
 	ForumComment forumComment;
 
+	@Autowired
+	HttpSession session;
 	@RequestMapping(value ="/getForumComments", method = RequestMethod.GET)
 	public ResponseEntity<List<ForumComment>> list() {
 
@@ -35,13 +40,13 @@ public class ForumCommentController {
 
 	// insert the forumComment
 	@RequestMapping(value = "/insertForumComment", method = RequestMethod.POST)
-	public ResponseEntity<String> addForumComment(@RequestBody ForumComment forumComment) {
-		forumComment.setForumId(201);
+	public ResponseEntity<ForumComment> addForumComment(@RequestBody ForumComment forumComment) {
+		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
+		forumComment.setUsername(loggedInUserId);
+		forumComment.setUserId(loggedInUserId);
 		forumComment.setForumCommentDate(new Date());
-		forumComment.setUsername("mani");
-		forumComment.setUserId("102");
 		forumCommentDao.save(forumComment);
-		return new ResponseEntity<String>("Successfully inserted", HttpStatus.OK);
+		return new ResponseEntity<ForumComment>(forumComment, HttpStatus.OK);
 
 	}
 
@@ -66,4 +71,10 @@ public class ForumCommentController {
 
 	}
 
+	
+	@RequestMapping(value = "/getAllCommentsByForumId/{forumId}", method = RequestMethod.GET)
+	public ResponseEntity<List<ForumComment>> getAllCommentsByForumId(@PathVariable("forumId") int forumId) {
+		return new ResponseEntity<List<ForumComment>>(forumCommentDao.getAllCommentsByForumId(forumId), HttpStatus.OK);
+	}
+	
 }

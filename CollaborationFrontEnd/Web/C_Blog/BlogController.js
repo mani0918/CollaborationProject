@@ -16,7 +16,7 @@ myApp.controller('BlogController', function($scope, $http, BlogService, $rootSco
 		errorMessage : ''
 
 	};
-	
+	this.postNewBlog=false;
 	this.blogComment = {
 			blogCommentId : '',
 			blogId : '',
@@ -92,7 +92,7 @@ myApp.controller('BlogController', function($scope, $http, BlogService, $rootSco
 			};
 			
 			
-	$rootScope.getBlogsByStatus=function(){
+	this.getBlogsByStatus=function(){
 		console.log("-------getBlogsByStatus");
 		if($location.path() == "/getApprovedBlogs"){
 		/*	this.blog.status="A";*/
@@ -109,7 +109,7 @@ myApp.controller('BlogController', function($scope, $http, BlogService, $rootSco
 		}
 	};	
 	
-	this.getAllBlogComments=function(id){
+	/*this.getAllBlogComments=function(id){
 		console.log("starting of getAllBlogComments");
 		BlogService.getAllBlogComments(id)
 					.then(
@@ -120,9 +120,10 @@ myApp.controller('BlogController', function($scope, $http, BlogService, $rootSco
 								
 							}
 					);
-	};
+	};*/
 	
 	this.createBlog=function(blog){
+		console.log(blog);
 		console.log("starting of createBlog");
 		BlogService.createBlog(blog)
 					.then(
@@ -135,7 +136,8 @@ myApp.controller('BlogController', function($scope, $http, BlogService, $rootSco
 						else{
 							console.log("you have successfully created the blog")
 							console.log(this.blog.errorMessage);
-							
+							alert(this.blog.errorMessage)
+							$route.reload();
 						}
 					}		
 					);
@@ -170,5 +172,63 @@ myApp.controller('BlogController', function($scope, $http, BlogService, $rootSco
 		$scope.myForm.$setPristine(); // reset Form
 	};	
 	
+	$scope.getBlog = getSelectedBlog
+	function getSelectedBlog(blogId)
+	{
+		console.log("Entering Get blog "+blogId)
+		BlogService.getBlog(blogId)
+		.then
+		(
+				function(response)
+				{
+					console.log("Get Blog Success "+response.status)
+					console.log(response)
+					$scope.blog=response;
+					
+					
+				}
+		)
+		BlogService.getComments(blogId)
+		.then
+		(
+				function(response)
+				{
+					console.log("Get comments for "+blogId)
+					console.log(response)
+					$rootScope.blogComments = response;
+    				localStorage.setItem('blogComments', JSON.stringify(response));
+					
+				}
+		);
+		$location.path("/viewBlog")
+	}
 	
+	this.addComment = addComment
+	function addComment(blogId)
+	{
+		$scope.blogComment.blogId = blogId;
+		BlogService.addComments(blogId, $scope.blogComment)
+		.then
+		(
+			function(response)
+			{
+				console.log("Add Blog Comment "+response.status)
+				$scope.reloadRoute();
+				$location.path('/viewBlog');
+				
+			}
+		);
+	}
+	
+	this.userClickedPostABlog = function(){
+		console.log(this.postNewBlog);
+		if(this.postNewBlog == true){
+			this.postNewBlog = false;
+			console.log(this.postNewBlog+"in if");
+		} else{
+			this.postNewBlog = true;
+			console.log(this.postNewBlog+"in else");
+		}
+		console.log(this.postNewBlog);
+	}
 });

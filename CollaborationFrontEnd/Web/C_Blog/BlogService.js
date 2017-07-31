@@ -42,7 +42,7 @@ myApp.service('BlogService',function($http,$q,$rootScope){
 					);
 		},
 		
-		getAllBlogComments:function(id){
+		/*getAllBlogComments:function(id){
 			console.log("calling getAllBlogComments");
 			return $http.get(BASE_URL+'/getAllCommentsByBlogId/'+id)
 					.then(
@@ -52,9 +52,10 @@ myApp.service('BlogService',function($http,$q,$rootScope){
 							},null
 					);
 					
-		},
+		},*/
 		
 		createBlog:function(blog){
+			console.log(blog);
 			console.log("calling createBlog");
 			return $http.post(BASE_URL+'/insertBlog',blog)
 						.then(
@@ -71,7 +72,7 @@ myApp.service('BlogService',function($http,$q,$rootScope){
 		
 		updateBlog: function(id){
         	console.log("calling updateBlog ")
-                return $http.put(BASE_URL+'/updateBlog/', id)  //2
+                return $http.put(BASE_URL+'/updateBlog/'+id)  //2
                         .then(
                                 function(response){
                                     return response.data;
@@ -82,6 +83,52 @@ myApp.service('BlogService',function($http,$q,$rootScope){
                                 }
                         );
         },
+        
+        getBlog: function(blogId)
+    	{
+    		return $http.get(BASE_URL + "/getBlog/"+blogId)
+    		.then(function(response)
+    		{
+    			console.log(response.status)
+    			console.log(response.data.errorCode)
+    			if(response.data.errorCode !=404 )
+    				$rootScope.gBlog = response.data
+    				localStorage.setItem('gBlog', JSON.stringify(response.data));
+    			console.log($rootScope.gBlog)
+    			return response.data;
+    		}, function(errResponse)
+    		{
+    			console.log(errResponse.status)
+    			return errResponse.data;
+    		});
+    	},
+    	
+    	getComments: function(blogId)
+    	{
+    		return $http.get(BASE_URL + "/getAllCommentsByBlogId/"+blogId)
+    		.then(
+    		function(response)
+    		{
+    			console.log(response.status)
+    			console.log(response.data)
+    			$rootScope.blogComments = response.data
+    			return response.data;
+    		});
+    	},
+    	
+    	addComments: function(blogId, blogComment)
+    	{
+    		console.log("Adding Comments")
+    		return $http.post(BASE_URL + "/insertBlogComment", blogComment)
+    		.then(
+    		function(response)
+    		{
+    			console.log(response.status)
+    			console.log("Added Blog")
+    			return response.data;
+    		});
+    	}
+    	
 		
 	};
 });

@@ -24,6 +24,8 @@ public interface JobDao {
 	// Students/Alumini gets jobs that are 'V'
 	public List<Job> list(String status);
 
+	
+	public List<JobApplied> listAllJobsApplied();
 	// List all open jobs
 	public List<Job> listAllOpenJobs();
 

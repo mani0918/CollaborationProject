@@ -69,6 +69,13 @@ public class JobController {
 
 	
 
+	
+
+	@GetMapping("/getAllJobApplications")
+	public ResponseEntity<List<JobApplied>> getAllJobApplications(){
+		logger.debug("---> Starting of method getAllJobApplications");
+		return new ResponseEntity<List<JobApplied>>(jobDao.listAllJobsApplied(), HttpStatus.OK);
+	}
 	@RequestMapping(value = "/getJobAppliedDetails/{userId}/{jobId}", method = RequestMethod.GET)
 
 	public ResponseEntity<JobApplied> getJobAppliedDetails(@PathVariable("userId") String userId , @PathVariable("jobId") String jobId ) {
@@ -125,10 +132,10 @@ public class JobController {
 	public ResponseEntity<JobApplied> applyForJob(@PathVariable("jobId") String jobId) {
 		logger.debug("Starting of the method applyForJob");
 		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
-		
+		Job job =jobDao.getJobById(jobId);
 		if (loggedInUserId != null) {
 
-			if (isUserAppliedForTheJob(loggedInUserId, jobId) == false) {
+			if ((isUserAppliedForTheJob(loggedInUserId, jobId) == false) && (job.getStatus()=="V")) {
 				jobApplied.setJobId(jobId);
 				jobApplied.setUserId(loggedInUserId);
 				jobApplied.setStatus("N"); // N-Newly Applied; C->Call For
@@ -156,7 +163,7 @@ public class JobController {
 
 		} else {
 			jobApplied.setErrorCode("404");
-			jobApplied.setErrorMessage("You have to loggin to apply for a job");
+			jobApplied.setErrorMessage("You have to loggin to apply for a job or the job is closed");
 		}
 
 		// jobApplied = jobDAO.getJobApplied(jobId);

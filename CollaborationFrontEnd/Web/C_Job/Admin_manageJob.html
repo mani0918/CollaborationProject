@@ -2,7 +2,7 @@
 	<h2 align="center">Jobs</h2>
 	<div class="container">
 	<hr class="style17">
-	<div ng-repeat="jb in jobs | orderBy : 'jobId'">
+	<div ng-repeat="jb in jobs | orderBy : 'jobId' | filter:{status: jobCtrl.getJobsByStatus()}">
 	
 	<!-- <div class="card text-center"> -->
 		<div class="card">
@@ -12,12 +12,10 @@
 				<h4 class="card-text">Description &nbsp:&nbsp&nbsp{{jb.jobDescription}}</h4>
 				<p class="card-text">Qualification &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp{{jb.qualification}}</p>
 				<p class="card-text" ng-show="jb.status=='V'">Status:Vacant</p>
-				<p class="card-text" ng-hide="jb.status=='V'">Status:Closed</p>
-				
-				</div>
-				<!-- <a href="#" class="btn btn-primary">Accept</a> -->
-				<button  align="right"  type="button" class="btn btn-danger" ng-hide="jb.status=='C'">Close the job.</button>
-			
+				<p class="card-text" ng-hide="jb.status =='V'">Status:Closed</p>
+	
+				<button  align="right"  type="button" class="btn btn-danger" ng-hide="jb.status=='C'" ng-click="jobCtrl.closeJob(jb.jobId)">Close the job.</button>
+			</div>
 		</div>
 		<!-- </div> -->
 	</div>

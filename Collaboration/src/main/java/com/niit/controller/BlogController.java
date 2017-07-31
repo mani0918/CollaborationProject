@@ -45,11 +45,27 @@ public class BlogController {
 		logger.debug("---Starting getAllBlogs method");
 		return new ResponseEntity<List<Blog>>(blogDao.list(), HttpStatus.OK);
 	}
+	
+	
+	@RequestMapping(value = "/getBlog/{blogId}", method = RequestMethod.GET)
+	public ResponseEntity<Blog> getBlog(@PathVariable("blogId") int blogId) {
+		logger.debug("calling method getUser");
+		Blog blog = blogDao.getBlogById(blogId);
+		if (blog == null) {
+			logger.debug("User does not exist wiht userId" + blogId);
+			blog = new Blog(); // To avoid NLP - NullPointerException
+			blog.setErrorCode("404");
+			blog.setErrorMessage("blog does not exist");
+			return new ResponseEntity<Blog>(blog, HttpStatus.OK);
+		} else {
+			logger.debug("**blog exist with id" + blogId);
+			return new ResponseEntity<Blog>(blog, HttpStatus.OK);
+		}
 
-
+	}
 	// insert the blog
 	@RequestMapping(value = "/insertBlog", method = RequestMethod.POST)
-	public ResponseEntity<String> addBlog(@RequestBody Blog blog) {
+	public ResponseEntity<Blog> addBlog(@RequestBody Blog blog) {
 		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 		if (loggedInUserId != null) {
 			blog.setCreateDate(new Date());
@@ -59,7 +75,7 @@ public class BlogController {
 			if (blogDao.save(blog)) {
 				logger.debug("---blog is created with" + blog.getBlogId());
 				blog.setErrorCode("200");
-				blog.setErrorMessage("Blog created successfully");
+				blog.setErrorMessage("Blog created successfully wait for admin approval");
 			} else {
 				logger.debug("----blog is not created with" + blog.getBlogId());
 				blog.setErrorCode("404");
@@ -70,7 +86,7 @@ public class BlogController {
 			blog.setErrorCode("404");
 			blog.setErrorMessage("Please login to create blog");
 		}
-		return new ResponseEntity<String>("Successfully inserted", HttpStatus.OK);
+		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 
 	}
 

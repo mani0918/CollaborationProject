@@ -1,41 +1,39 @@
 <div ng-controller="UserController as userCtrl">
-<div align="center"  class=container>
-<table>
-	
-	<tr>
-	<h2>MyProfile</h2>
-	<hr class="style17">
-	</tr>
-	<tr>
+<div ng-include="'C_User/Profile.html'"></div>
+ 	<br>
+ 	<br>
+	<div align="center" class=container>
+		<table>
 
-		<td>
-			
-  			<img class="card-img-top"  style="width:45%" src="Resources/images/img1.jpg" alt="Card image cap">
-			<!-- <h2>{{loggedInUser.firstname}}</h2> -->
-	    </td>
-		
-		<td>
-			<div  class="card" style="width: 20rem;">
-  				<!-- <div class="card-block">
+			<tr>
+				<h2>MyProfile</h2>
+				<hr class="style17">
+			</tr>
+			<tr>
+
+				<td><img class="img-responsive" check-image ng-src="{{'Resources/ProfilePics/'+loggedInUser.userId}}" style="width: 45%" alt="Profile Pic" />
+					<form method="POST" enctype="multipart/form-data" action="http://localhost:2020/Collaboration/Upload">
+						Upload New Image :<input type="file" name="uploadedFile"><br /> <input type="submit" value="Upload">
+					</form> <!-- <h2>{{loggedInUser.firstname}}</h2> --></td>
+
+				<td>
+					<div class="card" style="width: 35rem;">
+						<!-- <div class="card-block">
   				  <h4 class="card-title">Card title</h4>
    				 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   				</div> -->
- 			 <ul class="list-group list-group-flush">
-    			<li class="list-group-item">FirstName:{{loggedInUser.firstname}}</li>
-   				 <li class="list-group-item">LastName:{{loggedInUser.lastname}}</li>
-   				 <li class="list-group-item">EmailID:{{loggedInUser.emailId}}</li>
-				<li class="list-group-item">Role:{{loggedInUser.role}}</li>
-				<li class="list-group-item">Remarks:{{loggedInUser.remarks}}</li>
- 			 
- 			 </ul>
-  			<div class="card-block">
-		   <button type="button" class="btn btn-success">ViewFriends</button>
-				<button type="button" class="btn btn-info">Go to Home</button>
-  			</div>
-		</div>
-		</td>
-	</tr>
-</table>
-</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">FirstName:{{loggedInUser.firstname}}</li>
+							<li class="list-group-item">LastName:{{loggedInUser.lastname}}</li>
+							<li class="list-group-item">EmailID:{{loggedInUser.emailId}}</li>
+							<li class="list-group-item">Role:{{loggedInUser.role}}</li>
+							<li class="list-group-item">Remarks:{{loggedInUser.remarks}}</li>
+
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>
 

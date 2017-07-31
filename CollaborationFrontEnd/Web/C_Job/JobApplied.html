@@ -1,0 +1,21 @@
+
+	<h2 align="center">Jobs</h2>
+	<div class="container">
+	<hr class="style17">
+	<div ng-repeat="job in appliedJobsByMe | orderBy : 'jobId'">
+	
+	<!-- <div class="card text-center"> -->
+		<div class="card card card-inverse card-info">
+			<div class="card-header black">JobId:{{job.jobId}}</div>
+			<div class="card-block">
+			
+				<h3 class="card-title">UserID &nbsp:&nbsp&nbsp{{job.userId}}</h3>
+				<h4 class="card-text">Status &nbsp:&nbsp&nbsp{{job.status}}</h4>
+				<h4 class="card-text">Remarks &nbsp:&nbsp&nbsp{{job.remarks}}</h4>
+				<p class="card-text">jobAppliedDate &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp{{job.dateApplied}}</p>
+			</div>
+			
+		</div>
+	
+	</div>
+	</div>

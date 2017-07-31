@@ -1,0 +1,22 @@
+<div ng-controller="FriendController as frndCtrl">
+	<h2 align="center">ReceivedFriendRequests</h2>
+	<div class="container">
+	<hr class="style17">
+	<div ng-repeat="friend in getMyFriendRequests">
+	<!-- <div class="card text-center"> -->
+		<div class="card">
+			<div class="card-header">FriendName &nbsp:&nbsp&nbsp{{friend.firstname}}{{friend.lastname}}`</a></div>
+			<div class="card-block orange">
+				<h3 class="card-title">EmailId &nbsp:&nbsp&nbsp{{friend.emailId}}</h4>
+				<h4 class="card-text">RoleStatus&nbsp:&nbsp&nbsp{{friend.role}}</h4>
+				
+			    <button type="button" class="btn btn-info" ng-click="frndCtrl.acceptFriend(friend.friendId)">AcceptFriendRequest</button>
+				<button type="button" class="btn btn-danger" ng-click="frndCtrl.rejectFriend(friend.friendId)">RejectFriendRequest</button>
+			</div>
+		</div>
+	</div>
+
+	</div>
+	
+<!-- 	{{message}} -->
+</div>

@@ -3,6 +3,8 @@ package com.niit.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,9 @@ public class BlogCommentController {
 	BlogComment blogComment;
 	@Autowired
 	BlogDao blogDao;
+	
+	@Autowired
+	HttpSession session;
 
 	@RequestMapping(value = "/getBlogComments", method = RequestMethod.GET)
 	public ResponseEntity<List<BlogComment>> list() {
@@ -39,11 +44,10 @@ public class BlogCommentController {
 	// insert the blogComment
 	@RequestMapping(value = "/insertBlogComment", method = RequestMethod.POST)
 	public ResponseEntity<String> addBlogComment(@RequestBody BlogComment blogComment) {
-
+		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
 		blogComment.setBlogCommentDate(new Date());
-		blogComment.setBlogId(1);
-		blogComment.setUserId("102");
-		blogComment.setUsername("mani");
+		blogComment.setUsername(loggedInUserId);
+		blogComment.setUserId(loggedInUserId);
 		blogCommentDao.save(blogComment);
 		return new ResponseEntity<String>("Successfully inserted", HttpStatus.OK);
 

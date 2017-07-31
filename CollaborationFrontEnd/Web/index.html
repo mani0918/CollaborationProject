@@ -24,6 +24,8 @@
 <!-- <script src="Resources/JS/angular-route.js"></script> -->
 <script src="MainApp.js"></script>
 <script src="RouteConfig.js"></script>
+<script src="Resources/JS/sockjs.js"></script>
+<script src="Resources/JS/stomp.js"></script>
 <script src="C_Blog/BlogController.js"></script>
 <script src="C_Blog/BlogService.js"></script>
 <script src="C_Forum/ForumController.js"></script>
@@ -32,22 +34,36 @@
 <script src="C_User/UserService.js"></script>
 <script src="C_Job/JobController.js"></script>
 <script src="C_Job/JobService.js"></script>
+<script src="C_Chat/ChatController.js"></script>
+<script src="C_Chat/ChatService.js"></script>
+<script src="C_Friend/FriendController.js"></script>
+<script src="C_Friend/FriendService.js"></script>
 
 <script src="Resources/JS/sidebarscript.js"></script>
 
 <style>
    
-
+.black { background: #7E7E7E; }
 .purple { background: purple; }
 .green { background: green; }
-.blue { background: blue; }
+.maroon { background: maroon; }
+.brown { background: brown; }
 .orange { background: orange; }
 
+#menu {
+    position: absolute;
+    top: 80px;
+    right: 10px;
+}
 body {
     padding-bottom: 30px;
     margin-bottom: 100px;
 }
-
+body {
+    background-image: url("Resources/images/images.jpg");
+ background-size: cover;
+	
+}
 hr.style17 {
 	border-top: 1px solid #8c8b8b;
 	text-align: center;
@@ -69,7 +85,7 @@ hr.style17:after {
 </style>
 </head>
 
-<body ng-app="myApp">
+ <body ng-app="myApp">
 
 	<nav class="navbar navbar-inverse">
 		<!-- style="background-color: #e3f2fd;" -->
@@ -81,16 +97,15 @@ hr.style17:after {
 				<li ng-show="loggedInUser.role=='ROLE_USER'" class="active"><a href="#">Home</a></li>
 				<li ng-show="loggedInUser.role=='ROLE_ADMIN'" class="active"><a href="#/Admin">WelcomeAdmin</a></li>
 				<li><a href="#/Blog">Blog</a></li>
-				<!-- <ul class="dropdown-menu">
-				          <li><a href="#">Page 1-1</a></li>
-				          <li><a href="#">Page 1-2</a></li>
-				          <li><a href="#">Page 1-3</a></li>
-				     </ul> -->
 				<li><a href="#/Forum">Forum</a></li>
+				<li><a href="#/Job">Jobs</a></li>
+				<li><a href="#/allUsers">Users</a></li>
+				<li><a href="#/Chat">Chat</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				
-				<li><a ng-show="loggedInUser.userId" href="#/myProfile">Mr.{{loggedInUser.firstname}}</a></li>
+				<li><a ng-show="loggedInUser.userId">Mr.{{loggedInUser.firstname}}</a></li>
+				<li><a href="#/Profile">Profile</a></li>
 				<li><a ng-hide="loggedInUser.userId" href="#/Register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 				<li><a ng-hide="loggedInUser.userId" href="#/Login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
 				<li><a ng-show="loggedInUser.userId" ng-controller="UserController as userCtrl" ng-click="userCtrl.logout()"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>

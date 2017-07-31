@@ -1,0 +1,28 @@
+ <div ng-controller="FriendController as friendctrl">
+ 	<div ng-include="'C_User/Profile.html'"></div>
+ 	<br>
+ 	<br>
+	<h2 align="center">Sent requests</h2>
+	
+	<div class="container">
+	<hr class="style17">
+	<table class="table table-inverse">
+  <thead>
+    <tr>
+      <th>FriendPic</th>
+	  <th>FriendId</th>
+	  <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="friend in getMyFriends" ng-if="thisfriend.errorCode != '404'">
+      
+      <td><img class="img-rounded img-responsive profile-img" check-image ng-src="{{'Resources/ProfilePics/'+friend}}" height="60" width="60" /></td>
+		<td>{{friend}}</td>		
+		<td><a class="btn btn-danger" ng-click="friendctrl.unfriend(friend)">Unfriend</a></td>	
+    </tr>
+  </tbody>
+</table>
+</div>
+	
+</div>

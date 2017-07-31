@@ -3,7 +3,10 @@ package com.niit.domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -13,6 +16,8 @@ import org.springframework.stereotype.Component;
 @Table
 public class ForumComment extends BaseDomain {
 	@Id
+	@SequenceGenerator(name="SEQ_GEN", sequenceName="FORUMCOMMENT_MODEL", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SEQ_GEN")
 	private int forumCommentId;
 	private int forumId;
 	private String forumComment;

@@ -124,5 +124,11 @@ public class JobDaoImpl implements JobDao {
 		
 		return (Job) getCurrentSession().createCriteria(Job.class).add(Restrictions.eq("jobId", jobId)).uniqueResult();
 	}
+	
+	public List<JobApplied> listAllJobsApplied() {
+		return getCurrentSession().createCriteria(JobApplied.class)
+				.list();
+	}
+
 
 }

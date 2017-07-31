@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.domain.Blog;
 import com.niit.domain.BlogComment;
+import com.niit.domain.FileUpload;
 import com.niit.domain.Forum;
 import com.niit.domain.ForumComment;
 import com.niit.domain.Friend;
@@ -68,6 +69,7 @@ public class ApplicationContextConfig {
 		sessionBuilder.addAnnotatedClass(JobApplied.class);
 		sessionBuilder.addAnnotatedClass(User.class);
 	
+		sessionBuilder.addAnnotatedClass(FileUpload.class);
 		return sessionBuilder.buildSessionFactory();
 	}
 

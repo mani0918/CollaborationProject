@@ -1,47 +1,52 @@
-  <div ng-controller="ForumController">
-
-	<form>
-		<table>
-			<tr>
-				<td colspan="2"></td>
-			</tr>
-			<tr>
-				<td>Forum Content</td>
-			</tr>
-			<tr>
-				<td>Forum Name</td>
-				<td><input type="text" ng-model="forum.forumName" /></td>
-			</tr>
-			<tr>
-				<td>Forum Content</td>
-				<td colspan="2"><input type="text" ng-model="forum.forumContent" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" ng-click="saveForumPost()" /></td>
-			</tr>
-		</table>
-	</form>
+ <div ng-controller="ForumController as forumCtrl">
+	<a class="btn btn-success" ng-click = "forumCtrl.userClickedPostAForum()">Post a Forum</a>
+	<div ng-if="forumCtrl.postNewForum">
+		<h2 align="center">PostAForum</h2>
+		<div class="container">
+			<form ng-submit="forumCtrl.createForum(forumCtrl.forum)">
+				<div class="card">
+					<div class="card-header">Post A Forum</div>
+					<div class="card-block black">
+						<div class="form-group">
+							<label for="usr"> ForumName:</label> <input type="text" class="form-control" id="usr" ng-model="forumCtrl.forum.forumName">
+						</div>
+						<div class="form-group">
+							<label for="comment">ForumComment:</label>
+							<textarea class="form-control" rows="5" id="comment" ng-model="forumCtrl.forum.forumContent"></textarea>
+						</div>
+						<p align="right"><button type="submit" class="btn btn-warning">Post</button></p>
+					<br>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 	
+	<div class="container">
+		<h2 align="center">View Forums</h2>
 
-	
-	<p align="center">Forums</p>
-	<div class="container">            
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ForumId</th>
-        <th>ForumName</th>
-        <th>ForumContent</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr  ng-repeat='x in forumdata'>
-        <td>{{x.forumId}}</td>
-        <td>{{x.forumName}}</td>
-        <td>{{x.forumContent}}</td>
-      </tr>
-     
-    </tbody>
-  </table>
+		<hr class="style17">
+		<form>
+			<input type='text' ng-model="searchString">
+		</form>
+		<div ng-repeat="x in forums | orderBy : 'forumId' | filter:searchString">
+			<div ng-if="x.status == 'A'">
+				<!-- <div class="card text-center"> -->
+				<div class="card">
+					<div class="card-header"><a href="#/viewForum" ng-click="getForum(x.forumId)">ForumId:{{x.forumId}}</a></div>
+					<div class="card-block orange">
+						<h3 class="card-title">
+							ForumName &nbsp:&nbsp&nbsp{{x.forumName}}
+							</h4>
+							<h4 class="card-text">ForumContent &nbsp:&nbsp&nbsp{{x.forumContent}}</h4>
+							<p class="card-text">ForumStatus &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp{{x.status}}</p>
+					</div>
+				</div>
+				<!-- </div> -->
+			</div>
+		</div>
+	</div>
+
+	<!-- 	{{message}} -->
 </div>
-</div>
+ 

@@ -125,7 +125,7 @@ public class FriendController {
 //logger.debug("-------------------friendId"+friendId);
 		System.out.println("-------------------userId"+userId);
 		System.out.println("-------------------friendId"+friendId);
-		if (friendDao.get(friendId,userId) == null)
+		if (friendDao.get(userId,friendId) == null)
 			return false;
 		else
 			return true;
