@@ -21,7 +21,7 @@ Welcome to my github. I am Manideep.
 ### Prerequisites
  - JDK 1.8
 - Apache Maven
-- H2 database
+- Oracle database
 - Modern web browser supporting HTML 5, CSS 3 and ECMAScript 6, AngularJS
 
 
